@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import Error from "./Error";
 
 export default function Getweather({updateinfo,updateerr}){
     const [city,setcity]=useState("Bishnupur");

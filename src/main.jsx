@@ -5,8 +5,8 @@ import App from './App.jsx'
 import Weatherinfo from './Weatherinfo.jsx'
 import Getweather from './Getweather.jsx'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-    <App />
-//  <Getweather/>
+ReactDOM.createRoot(document.getElementById('root')).render(    
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
 )

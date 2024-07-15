@@ -7,14 +7,14 @@ import Error from './Error'
 function App() {
   const [info,setinfo]=useState();
   const [err,seterr]=useState("");
-  console.log(err)
-  console.log(info)
+  // console.log(err)
+  // console.log(info)
 let upadteinfo=(res)=>{
   setinfo(res);
   seterr(false);
 }
 let updateerr=(e)=>{
-  console.log(err)
+  // console.log(err)
   seterr(e);
   setinfo();
 }

@@ -7,7 +7,7 @@ export default function Error({err}){
         <div id="error">
             <div>
             <FontAwesomeIcon icon={faFaceSadCry} style={{color: "#FFD43B",}} />
-             <div>{err}</div>
+             <div>{err.cod} &nbsp; {err.message}</div>
             </div>
         </div>
     )

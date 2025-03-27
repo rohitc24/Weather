@@ -6,9 +6,10 @@ import Error from './Error'
 
 function App() {
   const [info,setinfo]=useState();
-  const [err,seterr]=useState("");
-  // console.log(err)
-  // console.log(info)
+  const [err,seterr]=useState();
+  console.log("rohit")
+  console.log(err)
+  console.log(info)
 let upadteinfo=(res)=>{
   setinfo(res);
   seterr(false);
@@ -16,7 +17,7 @@ let upadteinfo=(res)=>{
 let updateerr=(e)=>{
   // console.log(err)
   seterr(e);
-  setinfo();
+  setinfo(false);
 }
   return (
     <>

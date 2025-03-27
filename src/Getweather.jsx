@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export default function Getweather({updateinfo,updateerr}){
     const [city,setcity]=useState("Bishnupur");
     const Api_key="157bb8af2d74cabfa3f0de1509bbdc26";
     const Url="https://api.openweathermap.org/data/2.5/weather";
     const getweatherinfo=async()=>{
+        if(!city.trim()){
+            updateerr({cod:404,message:"please enter city"});
+            return ;
+        }
         try{
-            var res= await axios.get(`${Url}?q=${city}&appid=${Api_key}&units=metric`);
-            var data={
+            const res= await axios.get(`${Url}?q=${city}&appid=${Api_key}&units=metric`);
+            const data={
                 city: res.data.name,
                 feels_like: res.data.main.feels_like,
                 humidity: res.data.main.humidity,
@@ -25,17 +29,15 @@ export default function Getweather({updateinfo,updateerr}){
                 wind_speed: res.data.wind.speed,
                 wind_dir: res.data.wind.deg,
                 pressure:res.data.main.pressure,
-                weather: res.data.weather[0].main,
-    
+                weather: res.data.weather[0].main
             }
-            setcity("");
-            updateinfo(data);
-       
+           updateinfo(data);
         // console.log(data);
         // console.log(res);
         }catch(e){
             // console.log(e.response.data.message)
-            throw e;
+            // console.log(e)
+            updateerr(e.response.data);
         }
     }
     const handlechange=(e)=>{
@@ -43,15 +45,22 @@ export default function Getweather({updateinfo,updateerr}){
     }
     const handlesubmit=async (e)=>{
         e.preventDefault();
-        // console.log(city)
+        // console.log(city);
+        // let info=await getweatherinfo();
+        // // console.log(info);
+        // updateinfo(info);
+        await getweatherinfo();
         setcity("");
-        try{
-            await getweatherinfo();
-        }catch(e){
-            updateerr(e.response.data.message);
-        }
+        
     }
-    useEffect(()=>{getweatherinfo()},[])
+    useEffect(()=>{
+        const weatherapp=async()=>{
+           await getweatherinfo();
+            // updateinfo(info);
+            setcity("");
+        }
+        weatherapp();
+    },[])
     return (
         <>
         <form onSubmit={handlesubmit}>

@@ -15,7 +15,7 @@ let upadteinfo=(res)=>{
   seterr(false);
 }
 let updateerr=(e)=>{
-  // console.log(err)
+  console.log(rohit)
   seterr(e);
   setinfo(false);
 }
